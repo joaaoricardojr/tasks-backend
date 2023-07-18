@@ -1,8 +1,10 @@
 pipeline {
     agent any 
     stages {
-        steps ('Just Test') {
-            sh 'echo deu certo!'
+        stage ('Just Test') {
+            steps {
+                sh 'echo deu certo!'
+            }
         }
     }
 }
