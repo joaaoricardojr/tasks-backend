@@ -16,5 +16,13 @@ pipeline {
                 deploy adapters: [tomcat8(credentialsId: 'TomcatLogin', path: '', url: 'http://localhost:8001/')], contextPath: 'tasks-backend', war: 'target/tasks-backend.war'
             }
         }
+        stage ('Deploy Frontend') {
+            steps {
+                dir('frontend'){
+                    sh 'mvn clean package'
+                    deploy adapters: [tomcat8(credentialsId: 'TomcatLogin', path: '', url: 'http://localhost:8001/')], contextPath: 'tasks', war: 'target/tasks.war'
+                }
+            }
+        }
     }
 }
